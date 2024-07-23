@@ -1,11 +1,9 @@
 package com.caju.infra.resources
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
+import jakarta.persistence.*
 
-@Entity(name = "transactions")
+@Entity(name = "TransactionEntity")
+@Table(name = "transactions")
 data class TransactionEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

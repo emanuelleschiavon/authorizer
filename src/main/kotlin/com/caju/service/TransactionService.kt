@@ -5,12 +5,8 @@ import com.caju.infra.resources.AccountEntity
 import com.caju.infra.AccountRepository
 import com.caju.infra.resources.TransactionEntity
 import com.caju.infra.TransactionRepository
-import com.caju.infra.resources.Merchant
 import jakarta.transaction.Transactional
-import org.springframework.data.redis.core.RedisTemplate
-import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
-import redis.clients.jedis.Jedis
 
 @Service
 class TransactionService(
@@ -20,7 +16,7 @@ class TransactionService(
 ) {
     @Transactional
     fun authorizer(transactionEntity: TransactionEntity): TransactionEntity =
-        accountRepository.findByIdOrNull(transactionEntity.accountId)?.toDomain()
+        accountRepository.findByIdWithPessimisticLock(transactionEntity.accountId)?.toDomain()
             ?.let { balanceMatcher.updateBalance(it, transactionEntity) }
             ?.let { accountRepository.save(AccountEntity(it)) }
             ?.let { transactionRepository.save(transactionEntity) }

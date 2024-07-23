@@ -39,7 +39,7 @@ class TransactionServiceTest {
         val account = Account(transactionEntity.accountId, mapOf(FOOD to 200.0, MEAL to 200.0, CASH to 200.0))
         val accountEntityUpdated = AccountEntity(transactionEntity.accountId, 0.0, 200.0, 200.0)
         val accountUpdated = Account(transactionEntity.accountId, mapOf(FOOD to 0.0, MEAL to 200.0, CASH to 200.0))
-        every { accountRepository.findByIdOrNull(transactionEntity.accountId) } returns accountEntity
+        every { accountRepository.findByIdWithPessimisticLock(transactionEntity.accountId) } returns accountEntity
         every { balanceMatcher.updateBalance(account, transactionEntity) } returns accountUpdated
         every { accountRepository.save(accountEntityUpdated) } returns accountEntityUpdated
         every { transactionRepository.save(transactionEntity) } returns transactionEntity
@@ -52,7 +52,7 @@ class TransactionServiceTest {
     @Test
     fun `throws exception when account does not exist`() {
         val transactionEntity = TransactionEntity(1L, 2L, 200.0, 5411, "Mercados AB")
-        every { accountRepository.findByIdOrNull(transactionEntity.accountId) } returns null
+        every { accountRepository.findByIdWithPessimisticLock(transactionEntity.accountId) } returns null
 
         assertThrows<RuntimeException> { transactionService.authorizer(transactionEntity) }
     }
