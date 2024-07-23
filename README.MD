@@ -26,6 +26,8 @@ Depois rode o comando para a seguir para subir a aplicação:
 
 ### Usando as apis
 
+Foram criadas apis para criar um estabelecimento e para adicionar contas, apenas para facilitar rodar o serviço. 
+
 Para adicionar um estabelecimento conhecido ao banco em memória, use o comando:
 
 ```
@@ -35,6 +37,21 @@ curl --location 'http://localhost:8080/merchants' \
 	"id": "1",
 	"name": "UBER EATS                   SAO PAULO BR",
 	"mcc": "5811"
+}'
+```
+
+Para criar uma conta, pode rodar o seguinte comando:
+
+```
+curl --location 'http://localhost:8080/accounts' \
+--header 'Content-Type: application/json' \
+--data '{
+    "id": "1",
+    "balances": {
+        "MEAL": 500.0,
+        "FOOD": 50.0,
+        "CASH": 100.0
+    }
 }'
 ```
 
