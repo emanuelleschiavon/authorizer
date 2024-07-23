@@ -2,6 +2,7 @@ package com.caju.infra
 
 import com.caju.domain.Account
 import com.caju.domain.ProductType
+import com.caju.infra.resources.AccountEntity
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 

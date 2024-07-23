@@ -1,6 +1,6 @@
-package com.caju.inbound
+package com.caju.inbound.resources
 
-import com.caju.domain.TransactionEntity
+import com.caju.infra.resources.TransactionEntity
 
 data class TransactionRequest(
     val account: String,

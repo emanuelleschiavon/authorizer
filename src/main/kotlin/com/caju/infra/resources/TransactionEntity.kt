@@ -1,4 +1,4 @@
-package com.caju.domain
+package com.caju.infra.resources
 
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue

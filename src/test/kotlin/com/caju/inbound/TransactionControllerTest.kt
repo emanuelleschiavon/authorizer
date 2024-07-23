@@ -1,7 +1,9 @@
 package com.caju.inbound
 
 import com.caju.domain.InsufficientFundsException
-import com.caju.domain.TransactionEntity
+import com.caju.inbound.resources.TransactionRequest
+import com.caju.inbound.resources.TransactionResponse
+import com.caju.infra.resources.TransactionEntity
 import com.caju.service.TransactionService
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs

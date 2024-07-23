@@ -1,6 +1,6 @@
 package com.caju.infra
 
-import com.caju.domain.TransactionEntity
+import com.caju.infra.resources.TransactionEntity
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 

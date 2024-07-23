@@ -1,4 +1,4 @@
-package com.caju.infra
+package com.caju.infra.resources
 
 import com.caju.domain.Account
 import com.caju.domain.ProductType

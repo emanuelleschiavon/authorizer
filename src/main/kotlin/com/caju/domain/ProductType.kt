@@ -1,23 +1,12 @@
 package com.caju.domain
 
-import org.springframework.beans.factory.annotation.Value
-import org.springframework.stereotype.Component
+import org.springframework.boot.context.properties.ConfigurationProperties
 
-enum class ProductType(val mccs: List<Int>) {
-    FOOD(listOf(5411, 5412)), MEAL(listOf(5811, 5812)), CASH(emptyList());
-
-    companion object {
-        fun getProductByMcc(mcc: Int): ProductType =
-            entries.firstOrNull { it.mccs.contains(mcc) } ?: CASH
-    }
+enum class ProductType {
+    FOOD, MEAL, CASH;
 }
 
-@Component
-class ProductTypeProperties{
-    @Value("\${app.product-type.food}")
-    lateinit var food: List<String>
-    @Value("\${app.product-type.meal}")
-    lateinit var meal: List<String>
-    @Value("\${app.product-type.cash}")
-    lateinit var cash: List<String>
+@ConfigurationProperties(prefix = "app.product-type")
+class ProductTypeProperties {
+    lateinit var enumMapping: Map<ProductType, List<Int>>
 }
